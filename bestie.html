@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Committee Decryption</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-green: #0f0;
+      --pink-pop: #ff66cc;
+      --drama: #f06;
+      --font: 'Share Tech Mono', monospace;
+    }
+
+    body {
+      margin: 0;
+      padding: 5vw;
+      background-color: #000;
+      color: var(--neon-green);
+      font-family: var(--font);
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      line-height: 1.5;
+    }
+
+    #terminal {
+      white-space: pre-line;
+    }
+
+    .input-section {
+      margin-top: 5vh;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    input {
+      flex: 1;
+      min-width: 200px;
+      background-color: #000;
+      border: none;
+      border-bottom: 2px solid var(--neon-green);
+      color: var(--neon-green);
+      font-family: var(--font);
+      font-size: 1rem;
+      padding: 0.5rem;
+      outline: none;
+    }
+
+    button {
+      background-color: var(--neon-green);
+      color: #000;
+      font-weight: bold;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0c0;
+      transform: scale(1.05);
+    }
+
+    #reveal {
+      display: none;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      color: var(--pink-pop);
+      animation: fadeIn 3s ease forwards;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #countdown {
+      font-size: 1.4rem;
+      margin-top: 1.5rem;
+      color: var(--drama);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 8vw;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="typeSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+  <div id="terminal"></div>
+
+  <div class="input-section">
+    <label for="userInput">Decrypt identity: </label>
+    <input id="userInput" type="text" placeholder="Enter your name...">
+    <button onclick="decrypt()">Access</button>
+  </div>
+
+  <div id="countdown"></div>
+  <div id="reveal"></div>
+
+  <script>
+    const logs = [
+      'Connecting to Media Committee Mainframe... 🔌',
+      'Bypassing UNAM firewall... 🔓',
+      'Injecting application protocol... ☁️',
+      'Authenticating loyalty & vibes... 💖',
+      'Verifying dramatic energy levels... ✅',
+      'Final sequence initialized. Awaiting identity input... 🧠'
+    ];
+    const terminal = document.getElementById('terminal');
+    const typeSound = document.getElementById('typeSound');
+
+    let index = 0;
+    function typeLine() {
+      if (index < logs.length) {
+        terminal.innerHTML += logs[index] + '\n';
+        typeSound.currentTime = 0;
+        typeSound.play();
+        index++;
+        setTimeout(typeLine, 1500);
+      }
+    }
+    typeLine();
+
+    function decrypt() {
+      const input = document.getElementById('userInput').value.trim().toLowerCase();
+      if (input === 'twahafifiwa') {
+        document.querySelector('.input-section').style.display = 'none';
+        document.getElementById('countdown').innerText = 'Decryption successful. Initiating reveal in...';
+        let timeLeft = 5;
+        const countdownInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            document.getElementById('countdown').innerText = `Decryption successful. Initiating reveal in... ${timeLeft}`;
+            timeLeft--;
+          } else {
+            clearInterval(countdownInterval);
+            document.getElementById('countdown').style.display = 'none';
+            document.getElementById('reveal').style.display = 'block';
+            document.getElementById('reveal').innerHTML = `
+              ✨<br><strong>Welcome to the Media Committee, Queen Twahafifiwa 👑</strong><br>
+              You’ve officially been locked into the system—<em>no escape, only greatness now</em> 💅<br>
+              Let’s make some noise. 🎥📸✨<br><br>
+              <a href="agent_pass_download_link" style="color: #0f0; font-size: 1rem;">🎟️ Click here to download your Agent Pass</a>
+            `;
+          }
+        }, 1000);
+      } else {
+        alert('Access denied. That name doesn’t match our elite database 😎');
+      }
+    }
+  </script>
+</body>
+</html>
